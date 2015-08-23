@@ -1,0 +1,3 @@
+# For the testing code We'll use defaults from the LLVM style, but with unlimited line length.
+BasedOnStyle: llvm
+ColumnLimit: 0
