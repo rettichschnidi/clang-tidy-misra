@@ -9,6 +9,8 @@
 #include "../ClangTidyModule.h"
 #include "../ClangTidyModuleRegistry.h"
 #include "rules/c2012/17.1.h"
+#include "rules/cpp2008/18-0-1.h"
+#include "rules/cpp2008/27-0-1.h"
 
 namespace clang {
 namespace tidy {
@@ -18,6 +20,8 @@ class MISRAModule : public ClangTidyModule {
 public:
   void addCheckFactories(ClangTidyCheckFactories &CheckFactories) override {
     CheckFactories.registerCheck<c2012::Rule_17_1>("misra-c2012-17.1");
+    CheckFactories.registerCheck<cpp2008::Rule_18_0_1>("misra-cpp2008-18-0-1");
+    CheckFactories.registerCheck<cpp2008::Rule_27_0_1>("misra-cpp2008-27-0-1");
   }
 };
 

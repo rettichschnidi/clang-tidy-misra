@@ -18,7 +18,7 @@ namespace c2012 {
 class Rule_17_1 : public ClangTidyMisraCheck {
 public:
   Rule_17_1(StringRef Name, ClangTidyContext *Context);
-  void registerPPCallbacks(CompilerInstance &Compiler) override;
+  void registerPPCallbacksSimple() override;
   void registerMatchers(ast_matchers::MatchFinder *Finder) override;
   void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
 };
