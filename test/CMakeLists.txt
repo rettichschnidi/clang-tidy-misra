@@ -15,7 +15,7 @@ configure_lit_site_cfg(
   ${CMAKE_CURRENT_BINARY_DIR}/lit.site.cfg
   )
 
-option(CLANG_TIDY_MISRA_TEST_USE_VG "Run Clang tests under Valgrind" OFF)
+option(CLANG_TIDY_MISRA_TEST_USE_VG "Run clang-tidy-misra tests under Valgrind" OFF)
 if(CLANG_TIDY_MISRA_TEST_USE_VG)
   set(CLANG_TIDY_MISRA_TEST_EXTRA_ARGS ${CLANG_TIDY_MISRA_TEST_EXTRA_ARGS} "--vg")
 endif()
