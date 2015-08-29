@@ -1,4 +1,5 @@
-// RUN: "%clang"-tidy -checks=misra-c2012-17.1 %s -- | FileCheck %s
+// RUN: "%clang"-tidy -checks='-*,misra-c2012-17.1' %s -- | FileCheck %s
+
 #include <stdint.h>
 // CHECK: 17.1.c:[[@LINE+1]]:1: error: The features of <stdarg.h> shall not be used [misra-c2012-17.1]
 #include <stdarg.h>

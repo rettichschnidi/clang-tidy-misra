@@ -1,5 +1,5 @@
-// RUN: echo [{ '"directory"': '"."', '"command"': '"clang++ -std=c++11 -c %s"', '"file"': '"%s"'}] > %T/compile_commands.json
-// RUN: "%clang"-tidy -checks=misra-cpp2008-18-0-1 -p=%T %s | FileCheck %s
+// RUN: "%clang"-tidy -checks='-*,misra-cpp2008-18-0-1' %s -- -std=c++11 | FileCheck %s
+
 // CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <assert.h>
 // CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
