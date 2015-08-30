@@ -31,7 +31,7 @@ public:
                      llvm::StringRef SearchPath, llvm::StringRef RelativePath,
                      const Module *Imported) override {
     if (SetOfBannedIncludes.count(FileName) > 0) {
-      RuleChecker.diag(HashLoc, DiagnosticIDs::Error);
+      RuleChecker.diag(HashLoc);
     }
   }
 

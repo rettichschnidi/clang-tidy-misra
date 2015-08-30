@@ -25,7 +25,7 @@ public:
 
   /// \brief A simplified version of ClangTidyCheck::diag
   DiagnosticBuilder diag(SourceLocation Loc,
-                         DiagnosticIDs::Level Level = DiagnosticIDs::Error);
+                         DiagnosticIDs::Level Level = DiagnosticIDs::Warning);
 
   bool isC() const;
   bool isCPlusPlus() const;

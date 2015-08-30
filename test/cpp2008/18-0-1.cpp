@@ -1,48 +1,48 @@
-// RUN: "%clang"-tidy -checks='-*,misra-cpp2008-18-0-1' %s -- -std=c++11 | FileCheck %s
+// RUN: %python %S/../check_clang_tidy.py %s misra-cpp2008-18-0-1 %t
 
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <assert.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <ctype.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <errno.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <fenv.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <float.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <inttypes.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <iso646.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <limits.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <locale.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <math.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <setjmp.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <signal.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <stdarg.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <stdbool.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <stddef.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <stdint.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <stdlib.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <string.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <tgmath.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <time.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <wchar.h>
-// CHECK: :[[@LINE+1]]:1: error: The C library shall not be used. [misra-cpp2008-18-0-1]
+// CHECK-MESSAGES: [[@LINE+1]]:1: warning: The C library shall not be used. [misra-cpp2008-18-0-1]
 #include <wctype.h>
 
 #include <cassert>
