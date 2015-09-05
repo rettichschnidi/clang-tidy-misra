@@ -23,6 +23,7 @@ Example:
   // RUN: %python %S/check_clang_tidy.py %s llvm-include-order %t -- -isystem $(dirname %s)/Inputs/Headers
 """
 
+import os
 import re
 import subprocess
 import sys
@@ -38,12 +39,15 @@ def main():
     sys.exit('Not enough arguments.')
 
   input_file_name = sys.argv[1]
+  input_file_ext = os.path.splitext(input_file_name)[1]
   check_name = sys.argv[2]
-  temp_file_name = sys.argv[3] + '.cpp'
+  temp_file_name = sys.argv[3] + input_file_ext
 
   clang_tidy_extra_args = sys.argv[4:]
   if len(clang_tidy_extra_args) == 0:
-    clang_tidy_extra_args = ['--', '--std=c++11']
+    clang_tidy_extra_args = ['--']
+    if input_file_ext == '.cpp':
+      clang_tidy_extra_args.append('--std=c++11')
 
   with open(input_file_name, 'r') as input_file:
     input_text = input_file.read()
