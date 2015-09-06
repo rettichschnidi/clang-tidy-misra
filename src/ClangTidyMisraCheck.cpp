@@ -72,7 +72,8 @@ bool ClangTidyMisraCheck::doIgnore(clang::SourceLocation loc) {
     return IgnoreSystemHeaders;
   }
 
-  // Do not check source code locations which are originating from a file.
+  // Do not check source code locations which are not originating from an actual
+  // file.
   auto spellingLocation = CI->getSourceManager().getSpellingLoc(loc);
   auto fileName = CI->getSourceManager().getFilename(spellingLocation);
   if (fileName.empty()) {
