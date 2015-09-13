@@ -18,10 +18,7 @@ namespace cpp2008 {
 Rule_18_0_1::Rule_18_0_1(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
-void Rule_18_0_1::registerPPCallbacksSimple() {
-  if (!isCPlusPlus())
-    return;
-
+void Rule_18_0_1::registerPPCallbacksImpl() {
   using BannedIncludePPCallback = common::BannedInclude<Rule_18_0_1>;
   CI->getPreprocessor().addPPCallbacks(
       ::llvm::make_unique<BannedIncludePPCallback>(

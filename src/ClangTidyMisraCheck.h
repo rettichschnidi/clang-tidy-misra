@@ -21,14 +21,13 @@ public:
   ClangTidyMisraCheck(StringRef CheckName, ClangTidyContext *Context);
 
   virtual void registerPPCallbacks(CompilerInstance &Compiler) override final;
-  virtual void registerPPCallbacksSimple() = 0;
+
+  virtual void
+  check(const ast_matchers::MatchFinder::MatchResult &Result) override final;
 
   /// \brief A simplified version of ClangTidyCheck::diag
   DiagnosticBuilder diag(SourceLocation Loc,
                          DiagnosticIDs::Level Level = DiagnosticIDs::Warning);
-
-  bool isC() const;
-  bool isCPlusPlus() const;
 
   /// \brief Check if the element at \c loc should be ignored. Compiler-built-in
   /// or command-line-specified code most likely should not be checked. Also,
@@ -38,6 +37,12 @@ public:
   bool doIgnore(clang::SourceLocation loc);
 
 protected:
+  virtual void registerPPCallbacksImpl();
+  virtual void checkImpl(const ast_matchers::MatchFinder::MatchResult &Result);
+
+  bool isC() const;
+  bool isCPlusPlus() const;
+
   /// \brief Check if \c loc is within a system header.
   /// \return True if \c loc is within a system header, false if not.
   bool isInSystemHeader(clang::SourceLocation loc) const;
@@ -53,6 +58,8 @@ protected:
   /// \param loc Location within the translation unit to be tested.
   /// \return True if \c loc was defined at the command line, false if not.
   bool isCommandLine(clang::SourceLocation loc);
+
+  bool checkerIsActive();
 
   const std::string CheckName;
   ClangTidyContext *Context;

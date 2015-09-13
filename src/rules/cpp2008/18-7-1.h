@@ -18,9 +18,10 @@ namespace cpp2008 {
 class Rule_18_7_1 : public ClangTidyMisraCheck {
 public:
   Rule_18_7_1(StringRef Name, ClangTidyContext *Context);
-  void registerPPCallbacksSimple() override;
-  void registerMatchers(ast_matchers::MatchFinder *Finder) override;
-  void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
+  virtual void registerPPCallbacksImpl() override;
+  virtual void registerMatchers(ast_matchers::MatchFinder *Finder) override;
+  virtual void
+  checkImpl(const ast_matchers::MatchFinder::MatchResult &Result) override;
 };
 
 } // cpp2008

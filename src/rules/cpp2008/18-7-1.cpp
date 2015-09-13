@@ -24,10 +24,7 @@ namespace cpp2008 {
 Rule_18_7_1::Rule_18_7_1(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
-void Rule_18_7_1::registerPPCallbacksSimple() {
-  if (!isCPlusPlus())
-    return;
-
+void Rule_18_7_1::registerPPCallbacksImpl() {
   using BannedIncludePPCallback = common::BannedInclude<Rule_18_7_1>;
   CI->getPreprocessor().addPPCallbacks(
       ::llvm::make_unique<BannedIncludePPCallback>(
@@ -52,10 +49,8 @@ void Rule_18_7_1::registerMatchers(ast_matchers::MatchFinder *Finder) {
       this);
 }
 
-void Rule_18_7_1::check(const ast_matchers::MatchFinder::MatchResult &Result) {
-  if (!isCPlusPlus())
-    return;
-
+void Rule_18_7_1::checkImpl(
+    const ast_matchers::MatchFinder::MatchResult &Result) {
   if (const auto *call = Result.Nodes.getNodeAs<CallExpr>("CallExpr")) {
     diag(call->getLocStart());
   }

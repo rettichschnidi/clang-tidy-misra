@@ -7,6 +7,7 @@
 
 #include "ClangTidyMisraCheck.h"
 #include "clang/Frontend/CompilerInstance.h"
+#include "llvm/Support/Debug.h"
 #include "RuleHeadlineTexts.h"
 
 namespace clang {
@@ -20,8 +21,24 @@ ClangTidyMisraCheck::ClangTidyMisraCheck(llvm::StringRef CheckName,
 
 void ClangTidyMisraCheck::registerPPCallbacks(CompilerInstance &Compiler) {
   this->CI = &Compiler;
-  registerPPCallbacksSimple();
+
+  if (checkerIsActive()) {
+    registerPPCallbacksImpl();
+  }
 }
+
+void ClangTidyMisraCheck::registerPPCallbacksImpl() {}
+
+void ClangTidyMisraCheck::check(
+    const ast_matchers::MatchFinder::MatchResult &Result) {
+
+  if (checkerIsActive()) {
+    checkImpl(Result);
+  }
+}
+
+void ClangTidyMisraCheck::checkImpl(
+    const ast_matchers::MatchFinder::MatchResult &) {}
 
 DiagnosticBuilder ClangTidyMisraCheck::diag(SourceLocation Loc,
                                             DiagnosticIDs::Level Level) {
@@ -56,6 +73,22 @@ bool ClangTidyMisraCheck::isCommandLine(SourceLocation loc) {
   const SourceManager &sourceManager = CI->getSourceManager();
   const char *const filename = sourceManager.getPresumedLoc(loc).getFilename();
   return (strcmp(filename, "<command line>") == 0);
+}
+
+bool ClangTidyMisraCheck::checkerIsActive() {
+  using std::string;
+
+  assert((isCPlusPlus() || isC()) && "Language must be either C or C++!");
+  assert(((this->CheckName.find("misra-c2012-") != string::npos) ||
+          (this->CheckName.find("misra-cpp2008-") != string::npos)) &&
+         "Rule must belong either to MISRA C++:2008 or to C: 2012");
+
+  const bool enableMisraCpp2008 =
+      isCPlusPlus() && this->CheckName.find("misra-cpp2008-") != string::npos;
+  const bool enableMisraC2012 =
+      isC() && this->CheckName.find("misra-c2012-") != string::npos;
+
+  return enableMisraCpp2008 || enableMisraC2012;
 }
 
 bool ClangTidyMisraCheck::doIgnore(clang::SourceLocation loc) {

@@ -22,10 +22,7 @@ namespace c2012 {
 Rule_17_1::Rule_17_1(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
-void Rule_17_1::registerPPCallbacksSimple() {
-  if (!isC())
-    return;
-
+void Rule_17_1::registerPPCallbacksImpl() {
   using BannedIncludePPCallback = common::BannedInclude<Rule_17_1>;
   CI->getPreprocessor().addPPCallbacks(
       ::llvm::make_unique<BannedIncludePPCallback>(
@@ -42,10 +39,8 @@ void Rule_17_1::registerMatchers(ast_matchers::MatchFinder *Finder) {
   Finder->addMatcher(ast_matchers::varDecl().bind("VarDecl"), this);
 }
 
-void Rule_17_1::check(const ast_matchers::MatchFinder::MatchResult &Result) {
-  if (!isC())
-    return;
-
+void Rule_17_1::checkImpl(
+    const ast_matchers::MatchFinder::MatchResult &Result) {
   auto VD = *Result.Nodes.getNodeAs<VarDecl>("VarDecl");
 
   // Report error on usage of type "va_list"
