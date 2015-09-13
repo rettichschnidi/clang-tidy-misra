@@ -1,4 +1,4 @@
-//===-  RuleHeadlineTexts.cpp - clang-tidy-misra --------------------------===//
+//===--- RuleHeadlineTexts.cpp - clang-tidy-misra -------------------------===//
 //
 // A list with the headline of each MISRA C++:2008 and C:2012 rule.
 //
