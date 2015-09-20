@@ -21,7 +21,7 @@ Rule_10_3_2::Rule_10_3_2(llvm::StringRef Name, ClangTidyContext *Context)
 
 void Rule_10_3_2::registerMatchers(ast_matchers::MatchFinder *Finder) {
   Finder->addMatcher(
-      methodDecl(isVirtual(), unless(isImplicit())).bind("VirtualMethod"),
+      cxxMethodDecl(isVirtual(), unless(isImplicit())).bind("VirtualMethod"),
       this);
 }
 

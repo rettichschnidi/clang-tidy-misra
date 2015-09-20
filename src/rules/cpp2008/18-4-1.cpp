@@ -22,7 +22,7 @@ Rule_18_4_1::Rule_18_4_1(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
 void Rule_18_4_1::registerMatchers(ast_matchers::MatchFinder *Finder) {
-  Finder->addMatcher(newExpr().bind("new"), this);
+  Finder->addMatcher(cxxNewExpr().bind("new"), this);
 }
 
 void Rule_18_4_1::checkImpl(

@@ -21,7 +21,7 @@ Rule_10_3_3::Rule_10_3_3(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
 void Rule_10_3_3::registerMatchers(ast_matchers::MatchFinder *Finder) {
-  Finder->addMatcher(methodDecl(isPure()).bind("PureMethod"), this);
+  Finder->addMatcher(cxxMethodDecl(isPure()).bind("PureMethod"), this);
 }
 
 void Rule_10_3_3::checkImpl(
