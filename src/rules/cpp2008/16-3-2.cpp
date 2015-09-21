@@ -12,15 +12,15 @@
 #include "clang/Lex/Preprocessor.h"
 #include "clang/Lex/Token.h"
 
-using clang::MacroInfo;
-using clang::Token;
-using clang::MacroDirective;
-using clang::tidy::misra::cpp2008::Rule_16_3_2;
+namespace clang {
+namespace tidy {
+namespace misra {
+namespace cpp2008 {
 
 namespace {
-class HashFinder : public clang::PPCallbacks {
+class CheckerImpl : public clang::PPCallbacks {
 public:
-  HashFinder(Rule_16_3_2 &RuleChecker) : RuleChecker(RuleChecker) {}
+  CheckerImpl(Rule_16_3_2 &RuleChecker) : RuleChecker(RuleChecker) {}
 
   virtual void MacroDefined(const Token &, const MacroDirective *MD) override {
     const MacroInfo *macroInfo = MD->getMacroInfo();
@@ -42,16 +42,11 @@ private:
 };
 }
 
-namespace clang {
-namespace tidy {
-namespace misra {
-namespace cpp2008 {
-
 Rule_16_3_2::Rule_16_3_2(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
 void Rule_16_3_2::registerPPCallbacksImpl() {
-  CI->getPreprocessor().addPPCallbacks(::llvm::make_unique<HashFinder>(*this));
+  CI->getPreprocessor().addPPCallbacks(::llvm::make_unique<CheckerImpl>(*this));
 }
 
 } // namespace cpp2008

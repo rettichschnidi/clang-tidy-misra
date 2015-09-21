@@ -12,10 +12,10 @@
 #include "clang/Lex/Preprocessor.h"
 #include "clang/Lex/Token.h"
 
-using clang::MacroInfo;
-using clang::Token;
-using clang::MacroDirective;
-using clang::tidy::misra::cpp2008::Rule_16_3_1;
+namespace clang {
+namespace tidy {
+namespace misra {
+namespace cpp2008 {
 
 namespace {
 class HasCounter : public clang::PPCallbacks {
@@ -46,11 +46,6 @@ private:
   Rule_16_3_1 &RuleChecker;
 };
 }
-
-namespace clang {
-namespace tidy {
-namespace misra {
-namespace cpp2008 {
 
 Rule_16_3_1::Rule_16_3_1(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
