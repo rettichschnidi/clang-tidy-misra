@@ -23,6 +23,8 @@ add_clang_library(clangTidyMISRAModule
   src/rules/cpp2008/16-3-1.h
   src/rules/cpp2008/16-3-2.cpp
   src/rules/cpp2008/16-3-2.h
+  src/rules/cpp2008/17-0-1.cpp
+  src/rules/cpp2008/17-0-1.h
   src/rules/cpp2008/18-0-1.cpp
   src/rules/cpp2008/18-0-1.h
   src/rules/cpp2008/18-4-1.cpp
