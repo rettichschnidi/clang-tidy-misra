@@ -48,7 +48,7 @@ add_clang_library(clangTidyMISRAModule
   clangTidy
   )
 
-target_include_directories(clangTidyMISRAModule PUBLIC src/)
+target_include_directories(clangTidyMISRAModule PRIVATE src/)
 
 #Add our tests directory
 add_subdirectory(test)
