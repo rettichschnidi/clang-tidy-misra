@@ -19,6 +19,7 @@
 #include "rules/cpp2008/17-0-1.h"
 #include "rules/cpp2008/17-0-5.h"
 #include "rules/cpp2008/18-0-1.h"
+#include "rules/cpp2008/18-0-5.h"
 #include "rules/cpp2008/18-7-1.h"
 #include "rules/cpp2008/18-4-1.h"
 #include "rules/cpp2008/19-3-1.h"
@@ -42,6 +43,7 @@ public:
     CheckFactories.registerCheck<cpp2008::Rule_17_0_1>("misra-cpp2008-17-0-1");
     CheckFactories.registerCheck<cpp2008::Rule_17_0_5>("misra-cpp2008-17-0-5");
     CheckFactories.registerCheck<cpp2008::Rule_18_0_1>("misra-cpp2008-18-0-1");
+    CheckFactories.registerCheck<cpp2008::Rule_18_0_5>("misra-cpp2008-18-0-5");
     CheckFactories.registerCheck<cpp2008::Rule_18_4_1>("misra-cpp2008-18-4-1");
     CheckFactories.registerCheck<cpp2008::Rule_18_7_1>("misra-cpp2008-18-7-1");
     CheckFactories.registerCheck<cpp2008::Rule_19_3_1>("misra-cpp2008-19-3-1");
