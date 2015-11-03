@@ -21,7 +21,7 @@ public:
   virtual void registerMatchers(ast_matchers::MatchFinder *Finder) override;
   virtual void
   checkImpl(const ast_matchers::MatchFinder::MatchResult &Result) override;
-  virtual void registerPPCallbacksImpl();
+  virtual void registerPPCallbacksImpl() override;
 };
 
 } // cpp2008
