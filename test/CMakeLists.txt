@@ -24,7 +24,7 @@ if(CLANG_TIDY_MISRA_TEST_USE_VG)
 endif()
 
 list(APPEND CLANG_TIDY_MISRA_TEST_DEPS
-  clang-tidy clang-headers FileCheck
+  clang clang-tidy clang-headers FileCheck
   clangTidyMISRAModule
   )
 set(CLANG_TIDY_MISRA_TEST_PARAMS
