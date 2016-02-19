@@ -24,9 +24,9 @@ Bugs
 ====
 When reporting a bug, please include a code snippet which triggers the flaw.
 
-Contributions
-=============
-1. Make sure the rule is not yet covered
+Contribute a checker
+====================
+1. Make sure the rule can not yet be enforced by Clang, vanilla clang-tidy or us
 2. Check the `test-wishlist` folder for already existing test code
 3. Move/Add a file with the test cases to the `test` folder
 4. Implement checker logic - [Dumping the AST](http://clang.llvm.org/docs/IntroductionToTheClangAST.html#examining-the-ast)
