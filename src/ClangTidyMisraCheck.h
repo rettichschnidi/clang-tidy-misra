@@ -59,7 +59,13 @@ protected:
   /// \return True if \c loc was defined at the command line, false if not.
   bool isCommandLine(clang::SourceLocation loc);
 
-  bool checkerIsActive();
+  /// \brief Check if this checker is enabled.
+  ///
+  /// The following enables all MISRA C++ 2008 checks:
+  /// \code
+  /// clang-tidy -checks=misra-cpp2008* ...
+  /// \endcode
+  bool checkerIsActive() const;
 
   const std::string CheckName;
   ClangTidyContext *Context;

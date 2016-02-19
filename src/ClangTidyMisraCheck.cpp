@@ -75,7 +75,7 @@ bool ClangTidyMisraCheck::isCommandLine(SourceLocation loc) {
   return (strcmp(filename, "<command line>") == 0);
 }
 
-bool ClangTidyMisraCheck::checkerIsActive() {
+bool ClangTidyMisraCheck::checkerIsActive() const {
   using std::string;
 
   assert((isCPlusPlus() || isC()) && "Language must be either C or C++!");
