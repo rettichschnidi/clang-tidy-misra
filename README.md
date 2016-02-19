@@ -55,7 +55,7 @@ Running Tests
 
 Building Documentation
 ======================
-TBD
+Sorry, none so far. Have a look at `.travis.yml` if you are interested.
 
 Usage
 =====
