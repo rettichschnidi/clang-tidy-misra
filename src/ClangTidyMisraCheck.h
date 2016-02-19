@@ -25,13 +25,13 @@ public:
   virtual void
   check(const ast_matchers::MatchFinder::MatchResult &Result) override final;
 
-  /// \brief A simplified version of ClangTidyCheck::diag
+  /// \brief A simplified version of ClangTidyCheck::diag.
   DiagnosticBuilder diag(SourceLocation Loc,
                          DiagnosticIDs::Level Level = DiagnosticIDs::Warning);
 
   /// \brief Check if the element at \c loc should be ignored. Compiler-built-in
   /// or command-line-specified code most likely should not be checked. Also,
-  /// and has to be excluded as well.
+  /// system headers might have to be excluded as well.
   /// \param loc Location to evaluate.
   /// \return True if \c loc should be ignored (not checked), false if not.
   bool doIgnore(clang::SourceLocation loc);
