@@ -18,5 +18,6 @@ git clone --branch=${TRAVIS_BRANCH} \
 #Configure, build and test
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=X86 \
+ -DBUILD_SHARED_LIBS=ON ../llvm
 make VERBOSE=1 -j4 check-tidy-misra
