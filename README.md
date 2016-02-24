@@ -18,7 +18,7 @@ deviations, sign-offs, etc.) to achieve MISRA compliance
 
 Installation
 ============
-TBD
+Sorry, none so far. Have a look at `.travis.yml` if you are interested.
 
 Bugs
 ====
@@ -52,10 +52,6 @@ by using the `.clang-format` file in the test directory.
 Running Tests
 =============
 `make check-tidy-misra`
-
-Building Documentation
-======================
-Sorry, none so far. Have a look at `.travis.yml` if you are interested.
 
 Usage
 =====
