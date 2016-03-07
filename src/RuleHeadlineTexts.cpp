@@ -515,7 +515,6 @@ extern const HeadlineByRuleName ruleHeadlines = {
 { "misra-c2012-17.1", R"ruletext(The features of <stdarg.h> shall not be used)ruletext" },
 { "misra-c2012-17.2", R"ruletext(Functions shall not call themselves, either directly or indirectly)ruletext" },
 { "misra-c2012-17.3", R"ruletext(A function shall not be declared implicitly)ruletext" },
-
 { "misra-c2012-17.4", R"ruletext(All exit paths from a function with non-void return type shall have an explicit return statement with an expression)ruletext" },
 { "misra-c2012-17.5", R"ruletext(The function argument corresponding to a parameter declared to have an array type shall have an appropriate number of elements)ruletext" },
 { "misra-c2012-17.6", R"ruletext(The declaration of an array parameter shall not contain the static keyword between the [ ])ruletext" },
