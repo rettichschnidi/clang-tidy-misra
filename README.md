@@ -7,6 +7,20 @@ Progress
 ========
 This project is in an early stage and has not yet been tested extensively!
 
+The documents linked below describe if and how each rule can be checked.
+
+Explanation for the "Supported by" column:
+* TBD: "To Be Determined" - Rule has not yet been looked at at all
+* unchecked: Rule can not (yet) be checked at all
+* unchecked (document): Unchecked and likely uncheckable by a compiler
+* -...: Enforceable by enabling this option when invoking the compiler
+* misra-...: Checker developed by us is able to check this rule
+* ...: Checkable by the vanilla clang-tidy checker
+
+Documents:
+* [MISRA C++:2008](doc/cpp2008.md)
+* [MISRA C:2012](doc/c2012.md)
+
 Work plan
 =========
 Work to do, not necessarily in the listed order:
