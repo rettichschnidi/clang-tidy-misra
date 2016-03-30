@@ -7,7 +7,7 @@ Progress
 ========
 This project is in an early stage and has not yet been tested extensively!
 
-This documents describe if and how each rule can be checked:
+If and how each rule can be checked:
 * [MISRA C++:2008](doc/cpp2008.md)
 * [MISRA C:2012](doc/c2012.md)
 
@@ -30,7 +30,7 @@ deviations, sign-offs, etc.) to achieve MISRA compliance
 
 Installation
 ============
-Sorry, none so far. Have a look at `.travis.yml` if you are interested.
+Sorry, no documentation so far. `.travis.yml` may be useful.
 
 Bugs
 ====
