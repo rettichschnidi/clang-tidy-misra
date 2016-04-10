@@ -24,15 +24,13 @@ Rule_17_1::Rule_17_1(llvm::StringRef Name, ClangTidyContext *Context)
 
 void Rule_17_1::registerPPCallbacksImpl() {
   using BannedIncludePPCallback = common::BannedInclude<Rule_17_1>;
-  CI->getPreprocessor().addPPCallbacks(
-      ::llvm::make_unique<BannedIncludePPCallback>(
-          *this, BannedIncludePPCallback::StringSet{"stdarg.h"}));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<BannedIncludePPCallback>(
+      *this, BannedIncludePPCallback::StringSet{"stdarg.h"}));
 
   using BannedMacroPPCallback = common::BannedMacro<Rule_17_1>;
-  CI->getPreprocessor().addPPCallbacks(
-      ::llvm::make_unique<BannedMacroPPCallback>(
-          *this, BannedMacroPPCallback::StringSet{"va_arg", "va_start",
-                                                  "va_end", "va_copy"}));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<BannedMacroPPCallback>(
+      *this, BannedMacroPPCallback::StringSet{"va_arg", "va_start", "va_end",
+                                              "va_copy"}));
 }
 
 void Rule_17_1::registerMatchers(ast_matchers::MatchFinder *Finder) {

@@ -26,16 +26,14 @@ Rule_18_7_1::Rule_18_7_1(llvm::StringRef Name, ClangTidyContext *Context)
 
 void Rule_18_7_1::registerPPCallbacksImpl() {
   using BannedIncludePPCallback = common::BannedInclude<Rule_18_7_1>;
-  CI->getPreprocessor().addPPCallbacks(
-      ::llvm::make_unique<BannedIncludePPCallback>(
-          *this, BannedIncludePPCallback::StringSet{"csignal"}));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<BannedIncludePPCallback>(
+      *this, BannedIncludePPCallback::StringSet{"csignal"}));
 
   using BannedMacroPPCallback = common::BannedMacro<Rule_18_7_1>;
-  CI->getPreprocessor().addPPCallbacks(
-      ::llvm::make_unique<BannedMacroPPCallback>(
-          *this, BannedMacroPPCallback::StringSet{
-                     "SIGABRT", "SIGFPE", "SIGILL", "SIGINT", "SIGSEGV",
-                     "SIGTERM", "SIG_DFL", "SIG_IGN", "SIG_ERR"}));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<BannedMacroPPCallback>(
+      *this, BannedMacroPPCallback::StringSet{
+                 "SIGABRT", "SIGFPE", "SIGILL", "SIGINT", "SIGSEGV", "SIGTERM",
+                 "SIG_DFL", "SIG_IGN", "SIG_ERR"}));
 }
 
 void Rule_18_7_1::registerMatchers(ast_matchers::MatchFinder *Finder) {

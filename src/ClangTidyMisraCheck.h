@@ -59,6 +59,12 @@ protected:
   /// \return True if \c loc was defined at the command line, false if not.
   bool isCommandLine(clang::SourceLocation loc);
 
+  /// Return the current AST context.
+  clang::ASTContext &getASTContext() const;
+
+  /// Return the current preprocessor.
+  clang::Preprocessor &getPreprocessor() const;
+
   /// \brief Check if this checker is enabled.
   ///
   /// The following enables all MISRA C++ 2008 checks:
@@ -67,6 +73,7 @@ protected:
   /// \endcode
   bool checkerIsActive() const;
 
+private:
   const std::string CheckName;
   ClangTidyContext *Context;
   CompilerInstance *CI;

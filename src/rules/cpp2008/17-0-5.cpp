@@ -58,7 +58,7 @@ void Rule_17_0_5::registerMatchers(ast_matchers::MatchFinder *Finder) {
 }
 
 void Rule_17_0_5::registerPPCallbacksImpl() {
-  CI->getPreprocessor().addPPCallbacks(::llvm::make_unique<CheckerImpl>(*this));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<CheckerImpl>(*this));
 }
 
 void Rule_17_0_5::checkImpl(

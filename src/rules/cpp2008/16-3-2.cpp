@@ -46,7 +46,7 @@ Rule_16_3_2::Rule_16_3_2(llvm::StringRef Name, ClangTidyContext *Context)
     : ClangTidyMisraCheck(Name, Context) {}
 
 void Rule_16_3_2::registerPPCallbacksImpl() {
-  CI->getPreprocessor().addPPCallbacks(::llvm::make_unique<CheckerImpl>(*this));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<CheckerImpl>(*this));
 }
 
 } // namespace cpp2008

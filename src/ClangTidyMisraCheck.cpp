@@ -75,6 +75,18 @@ bool ClangTidyMisraCheck::isCommandLine(SourceLocation loc) {
   return (strcmp(filename, "<command line>") == 0);
 }
 
+ASTContext &ClangTidyMisraCheck::getASTContext() const {
+  assert(CI && "Need CompilerInstance");
+  assert(CI->hasASTContext() && "Compiler instance needs AST context!");
+  return CI->getASTContext();
+}
+
+Preprocessor &ClangTidyMisraCheck::getPreprocessor() const {
+  assert(CI && "Need CompilerInstance");
+  assert(CI->hasPreprocessor() && "Compiler instance has no preprocessor!");
+  return CI->getPreprocessor();
+}
+
 bool ClangTidyMisraCheck::checkerIsActive() const {
   using std::string;
 

@@ -28,11 +28,8 @@ void Rule_10_3_3::checkImpl(
     const ast_matchers::MatchFinder::MatchResult &Result) {
   if (const auto *methodDecl =
           Result.Nodes.getNodeAs<CXXMethodDecl>("PureMethod")) {
-
-    assert(CI->hasASTContext() && "Compiler instance needs AST context!");
-
-    for (auto I = CI->getASTContext().overridden_methods_begin(methodDecl),
-              E = CI->getASTContext().overridden_methods_end(methodDecl);
+    for (auto I = getASTContext().overridden_methods_begin(methodDecl),
+              E = getASTContext().overridden_methods_end(methodDecl);
          I != E; ++I) {
       if (!(*I)->isPure()) {
         diag(methodDecl->getLocation());

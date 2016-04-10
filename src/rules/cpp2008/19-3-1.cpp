@@ -20,9 +20,8 @@ Rule_19_3_1::Rule_19_3_1(llvm::StringRef Name, ClangTidyContext *Context)
 
 void Rule_19_3_1::registerPPCallbacksImpl() {
   using BannedMacroPPCallback = common::BannedMacro<Rule_19_3_1>;
-  CI->getPreprocessor().addPPCallbacks(
-      ::llvm::make_unique<BannedMacroPPCallback>(
-          *this, BannedMacroPPCallback::StringSet{"errno"}));
+  getPreprocessor().addPPCallbacks(::llvm::make_unique<BannedMacroPPCallback>(
+      *this, BannedMacroPPCallback::StringSet{"errno"}));
 }
 
 } // namespace cpp2008

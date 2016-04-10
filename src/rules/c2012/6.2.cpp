@@ -37,7 +37,7 @@ void Rule_6_2::checkImpl(const ast_matchers::MatchFinder::MatchResult &Result) {
   }
 
   // Rule applies only to single bit fields
-  if (FD.getBitWidthValue(CI->getASTContext()) != 1) {
+  if (FD.getBitWidthValue(getASTContext()) != 1) {
     return;
   }
 

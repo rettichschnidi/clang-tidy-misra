@@ -29,9 +29,8 @@ void Rule_18_4_1::checkImpl(
     const ast_matchers::MatchFinder::MatchResult &Result) {
   if (const auto *newExpr = Result.Nodes.getNodeAs<CXXNewExpr>("new")) {
     // Print error on all new usages except for placement new
-    assert(CI->hasASTContext());
     if (newExpr->getNumPlacementArgs() == 0 ||
-        newExpr->shouldNullCheckAllocation(CI->getASTContext())) {
+        newExpr->shouldNullCheckAllocation(getASTContext())) {
       diag(newExpr->getLocStart());
     }
   }
