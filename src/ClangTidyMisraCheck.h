@@ -76,6 +76,9 @@ protected:
   /// \endcode
   bool checkerIsActive() const;
 
+  /// Return the text of the token at \p start.
+  std::string srcLocToTokenString(const SourceLocation start);
+
 private:
   const std::string CheckName;
   ClangTidyContext *Context;

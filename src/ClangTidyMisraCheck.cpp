@@ -102,6 +102,17 @@ bool ClangTidyMisraCheck::checkerIsActive() const {
   return enableMisraCpp2008 || enableMisraC2012;
 }
 
+std::string
+ClangTidyMisraCheck::srcLocToTokenString(const SourceLocation start) {
+  const ASTContext &C = getASTContext();
+  const SourceManager &SM = C.getSourceManager();
+  const LangOptions LO = C.getLangOpts();
+  const SourceLocation spellLoc = SM.getSpellingLoc(start);
+  unsigned tokenLength = Lexer::MeasureTokenLength(spellLoc, SM, LO);
+  return std::string(SM.getCharacterData(spellLoc),
+                     SM.getCharacterData(spellLoc) + tokenLength);
+}
+
 bool ClangTidyMisraCheck::doIgnore(clang::SourceLocation loc) {
   if (loc.isInvalid()) {
     return true;

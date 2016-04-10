@@ -74,7 +74,7 @@ extern const HeadlineByRuleName ruleHeadlines = {
 // Literals
 { "misra-cpp2008-2-13-1", R"ruletext(Only those escape sequences that are defined in ISO/IEC 14882:2003 shall be used.)ruletext" },
 { "misra-cpp2008-2-13-2", R"ruletext(Octal constants (other than zero) and octal escape sequences (other than "\0") shall not be used.)ruletext" },
-{ "misra-cpp2008-2-13-3", R"ruletext(A "U " suffix shall be applied to all octal or hexadecimal integer literals of unsigned type.)ruletext" },
+{ "misra-cpp2008-2-13-3", R"ruletext(A "U" suffix shall be applied to all octal or hexadecimal integer literals of unsigned type.)ruletext" },
 { "misra-cpp2008-2-13-4", R"ruletext(Literal suffixes shall be upper case.)ruletext" },
 { "misra-cpp2008-2-13-5", R"ruletext(Narrow and wide string literals shall not be concatenated.)ruletext" },
 
