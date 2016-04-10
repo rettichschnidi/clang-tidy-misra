@@ -7,6 +7,7 @@
 
 #include "ClangTidyMisraCheck.h"
 #include "clang/Frontend/CompilerInstance.h"
+#include "clang/Lex/Lexer.h"
 #include "llvm/Support/Debug.h"
 #include "RuleHeadlineTexts.h"
 
@@ -46,45 +47,43 @@ DiagnosticBuilder ClangTidyMisraCheck::diag(SourceLocation Loc,
 }
 
 bool ClangTidyMisraCheck::isC() const {
-  assert(CI && "Need CompilerInstance");
-  return (CI->getLangOpts().C99 || CI->getLangOpts().C11);
+  return (getCI().getLangOpts().C99 || getCI().getLangOpts().C11);
 }
 
 bool ClangTidyMisraCheck::isCPlusPlus() const {
-  assert(CI && "Need CompilerInstance");
-  return CI->getLangOpts().CPlusPlus;
+  return getCI().getLangOpts().CPlusPlus;
 }
 
 bool ClangTidyMisraCheck::isInSystemHeader(SourceLocation loc) const {
-  assert(CI && "Need CompilerInstance");
-  const SourceManager &sourceManager = CI->getSourceManager();
+  const SourceManager &sourceManager = getCI().getSourceManager();
   return sourceManager.isInSystemHeader(loc);
 }
 
 bool ClangTidyMisraCheck::isBuiltIn(clang::SourceLocation loc) const {
-  assert(CI && "Need CompilerInstance");
-  const SourceManager &sourceManager = CI->getSourceManager();
+  const SourceManager &sourceManager = getCI().getSourceManager();
   const char *const filename = sourceManager.getPresumedLoc(loc).getFilename();
   return (strcmp(filename, "<built-in>") == 0);
 }
 
 bool ClangTidyMisraCheck::isCommandLine(SourceLocation loc) {
-  assert(CI && "Need CompilerInstance");
-  const SourceManager &sourceManager = CI->getSourceManager();
+  const SourceManager &sourceManager = getCI().getSourceManager();
   const char *const filename = sourceManager.getPresumedLoc(loc).getFilename();
   return (strcmp(filename, "<command line>") == 0);
 }
 
 ASTContext &ClangTidyMisraCheck::getASTContext() const {
-  assert(CI && "Need CompilerInstance");
-  assert(CI->hasASTContext() && "Compiler instance needs AST context!");
-  return CI->getASTContext();
+  assert(getCI().hasASTContext() && "Compiler instance needs AST context!");
+  return getCI().getASTContext();
 }
 
 Preprocessor &ClangTidyMisraCheck::getPreprocessor() const {
+  assert(getCI().hasPreprocessor() && "Compiler instance has no preprocessor!");
+  return getCI().getPreprocessor();
+}
+
+CompilerInstance &ClangTidyMisraCheck::getCI() const {
   assert(CI && "Need CompilerInstance");
-  assert(CI->hasPreprocessor() && "Compiler instance has no preprocessor!");
-  return CI->getPreprocessor();
+  return *CI;
 }
 
 bool ClangTidyMisraCheck::checkerIsActive() const {
@@ -119,8 +118,8 @@ bool ClangTidyMisraCheck::doIgnore(clang::SourceLocation loc) {
 
   // Do not check source code locations which are not originating from an actual
   // file.
-  auto spellingLocation = CI->getSourceManager().getSpellingLoc(loc);
-  auto fileName = CI->getSourceManager().getFilename(spellingLocation);
+  auto spellingLocation = getCI().getSourceManager().getSpellingLoc(loc);
+  auto fileName = getCI().getSourceManager().getFilename(spellingLocation);
   if (fileName.empty()) {
     return true;
   }

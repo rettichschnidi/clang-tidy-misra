@@ -65,6 +65,9 @@ protected:
   /// Return the current preprocessor.
   clang::Preprocessor &getPreprocessor() const;
 
+  /// Return the current compiler instance.
+  CompilerInstance &getCI() const;
+
   /// \brief Check if this checker is enabled.
   ///
   /// The following enables all MISRA C++ 2008 checks:
