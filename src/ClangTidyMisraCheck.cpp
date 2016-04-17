@@ -18,7 +18,11 @@ namespace misra {
 ClangTidyMisraCheck::ClangTidyMisraCheck(llvm::StringRef CheckName,
                                          ClangTidyContext *Context)
     : ClangTidyCheck(CheckName, Context), CheckName(CheckName),
-      Context(Context), CI(nullptr) {}
+      Context(Context), CI(nullptr),
+      IgnoreInvalidLocations(Options.get("IgnoreInvalidLocations", true)),
+      IgnoreBuiltInLocations(Options.get("IgnoreBuiltInLocations", true)),
+      IgnoreCommandLineLocations(
+          Options.get("IgnoreCommandLineLocations", false)) {}
 
 void ClangTidyMisraCheck::registerPPCallbacks(CompilerInstance &Compiler) {
   this->CI = &Compiler;
@@ -38,12 +42,19 @@ void ClangTidyMisraCheck::check(
   }
 }
 
+void ClangTidyMisraCheck::storeOptions(ClangTidyOptions::OptionMap &Opts) {
+  Options.store(Opts, "IgnoreInvalidLocations", IgnoreInvalidLocations);
+  Options.store(Opts, "IgnoreBuiltInLocations", IgnoreBuiltInLocations);
+  Options.store(Opts, "IgnoreCommandLineLocations", IgnoreCommandLineLocations);
+}
+
 void ClangTidyMisraCheck::checkImpl(
     const ast_matchers::MatchFinder::MatchResult &) {}
 
-DiagnosticBuilder ClangTidyMisraCheck::diag(SourceLocation Loc,
-                                            DiagnosticIDs::Level Level) {
-  return ClangTidyCheck::diag(Loc, ruleHeadlines.at(CheckName), Level);
+void ClangTidyMisraCheck::diag(SourceLocation Loc, DiagnosticIDs::Level Level) {
+  if (!isIgnored(Loc)) {
+    ClangTidyCheck::diag(Loc, ruleHeadlines.at(CheckName), Level);
+  }
 }
 
 bool ClangTidyMisraCheck::isC() const {
@@ -52,11 +63,6 @@ bool ClangTidyMisraCheck::isC() const {
 
 bool ClangTidyMisraCheck::isCPlusPlus() const {
   return getCI().getLangOpts().CPlusPlus;
-}
-
-bool ClangTidyMisraCheck::isInSystemHeader(SourceLocation loc) const {
-  const SourceManager &sourceManager = getCI().getSourceManager();
-  return sourceManager.isInSystemHeader(loc);
 }
 
 bool ClangTidyMisraCheck::isBuiltIn(clang::SourceLocation loc) const {
@@ -113,26 +119,15 @@ ClangTidyMisraCheck::srcLocToTokenString(const SourceLocation start) {
                      SM.getCharacterData(spellLoc) + tokenLength);
 }
 
-bool ClangTidyMisraCheck::doIgnore(clang::SourceLocation loc) {
+bool ClangTidyMisraCheck::isIgnored(clang::SourceLocation loc) {
   if (loc.isInvalid()) {
-    return true;
+    return IgnoreInvalidLocations;
   }
   if (isBuiltIn(loc)) {
-    return true;
+    return IgnoreBuiltInLocations;
   }
   if (isCommandLine(loc)) {
-    return true;
-  }
-  if (isInSystemHeader(loc)) {
-    return IgnoreSystemHeaders;
-  }
-
-  // Do not check source code locations which are not originating from an actual
-  // file.
-  auto spellingLocation = getCI().getSourceManager().getSpellingLoc(loc);
-  auto fileName = getCI().getSourceManager().getFilename(spellingLocation);
-  if (fileName.empty()) {
-    return true;
+    return IgnoreCommandLineLocations;
   }
   return false;
 }

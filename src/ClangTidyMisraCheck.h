@@ -25,16 +25,18 @@ public:
   virtual void
   check(const ast_matchers::MatchFinder::MatchResult &Result) override final;
 
+  virtual void storeOptions(ClangTidyOptions::OptionMap &Opts) override;
+
   /// \brief A simplified version of ClangTidyCheck::diag.
-  DiagnosticBuilder diag(SourceLocation Loc,
-                         DiagnosticIDs::Level Level = DiagnosticIDs::Warning);
+  void diag(SourceLocation Loc,
+            DiagnosticIDs::Level Level = DiagnosticIDs::Warning);
 
   /// \brief Check if the element at \c loc should be ignored. Compiler-built-in
   /// or command-line-specified code most likely should not be checked. Also,
   /// system headers might have to be excluded as well.
   /// \param loc Location to evaluate.
   /// \return True if \c loc should be ignored (not checked), false if not.
-  bool doIgnore(clang::SourceLocation loc);
+  bool isIgnored(clang::SourceLocation loc);
 
 protected:
   virtual void registerPPCallbacksImpl();
@@ -42,10 +44,6 @@ protected:
 
   bool isC() const;
   bool isCPlusPlus() const;
-
-  /// \brief Check if \c loc is within a system header.
-  /// \return True if \c loc is within a system header, false if not.
-  bool isInSystemHeader(clang::SourceLocation loc) const;
 
   /// \brief Check if \c loc is a built in, e.g. defined by the compiler itself.
   /// \param loc Location within the translation unit to be tested.
@@ -83,7 +81,9 @@ private:
   const std::string CheckName;
   ClangTidyContext *Context;
   CompilerInstance *CI;
-  bool IgnoreSystemHeaders = true; ///< Should we skip the system headers?
+  const bool IgnoreInvalidLocations;
+  const bool IgnoreBuiltInLocations;
+  const bool IgnoreCommandLineLocations;
 };
 
 } // namespace misra
