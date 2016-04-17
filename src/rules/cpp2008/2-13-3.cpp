@@ -29,10 +29,6 @@ void Rule_2_13_3::checkImpl(
     const ast_matchers::MatchFinder::MatchResult &Result) {
   if (const auto *castExpr =
           Result.Nodes.getNodeAs<ImplicitCastExpr>("ImplicitCastExpr")) {
-    // Bail out early if this location should not be checked
-    if (doIgnore(castExpr->getLocStart())) {
-      return;
-    }
 
     const IntegerLiteral *intLiteral =
         dyn_cast<IntegerLiteral>(castExpr->getSubExpr());
