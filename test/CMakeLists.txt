@@ -41,4 +41,4 @@ set_target_properties(check-tidy-misra PROPERTIES FOLDER "Clang tidy MISRA tests
 
 #Add dummy library to get Qt Creator to show the tests.
 file(GLOB_RECURSE SRC_TEST_LIST "*.c*")
-add_library(check-tidy-misra-testfiles STATIC ${SRC_TEST_LIST})
+add_library(check-tidy-misra-testfiles STATIC EXCLUDE_FROM_ALL ${SRC_TEST_LIST})
