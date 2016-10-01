@@ -1,7 +1,7 @@
 // RUN: %clang -std=c99 -Wtrigraphs -fsyntax-only -ferror-limit=0 -Xclang -verify %s
 
 char trigraphRaute[] = "??= -> #";        // expected-warning {{trigraph converted to '#' character}}
-char trigraphBackslash[] = "??/"-> \"";   // expected-warning {{trigraph converted to '\' character}}
+char trigraphBackslash[] = "??/" -> \"";  // expected-warning {{trigraph converted to '\' character}}
 char trigraphCaret[] = "??' -> ^";        // expected-warning {{trigraph converted to '^' character}}
 char trigraphOpenBracket[] = "??( -> [";  // expected-warning {{trigraph converted to '[' character}}
 char trigraphCloseBracket[] = "??) -> ]"; // expected-warning {{trigraph converted to ']' character}}
