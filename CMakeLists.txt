@@ -19,6 +19,8 @@ add_clang_library(clangTidyMISRAModule
   src/rules/cpp2008/6-4-1.h
   src/rules/cpp2008/6-4-2.cpp
   src/rules/cpp2008/6-4-2.h
+  src/rules/cpp2008/6-4-4.cpp
+  src/rules/cpp2008/6-4-4.h
   src/rules/cpp2008/9-5-1.cpp
   src/rules/cpp2008/9-5-1.h
   src/rules/cpp2008/10-3-2.cpp
