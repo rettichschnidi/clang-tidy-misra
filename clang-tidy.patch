@@ -1,14 +1,14 @@
 diff --git a/clang-tidy/CMakeLists.txt b/clang-tidy/CMakeLists.txt
-index 5e946f4..b5b1868 100644
+index d08d56da..3800d8d4 100644
 --- a/clang-tidy/CMakeLists.txt
 +++ b/clang-tidy/CMakeLists.txt
-@@ -38,3 +38,4 @@ add_subdirectory(mpi)
- add_subdirectory(performance)
+@@ -40,3 +40,4 @@ add_subdirectory(performance)
  add_subdirectory(readability)
+ add_subdirectory(safety)
  add_subdirectory(utils)
 +add_subdirectory(misra)
 diff --git a/clang-tidy/tool/CMakeLists.txt b/clang-tidy/tool/CMakeLists.txt
-index 682d5eb..dc2d29e 100644
+index 77222117..fa114e78 100644
 --- a/clang-tidy/tool/CMakeLists.txt
 +++ b/clang-tidy/tool/CMakeLists.txt
 @@ -17,6 +17,7 @@ target_link_libraries(clang-tidy
@@ -20,12 +20,12 @@ index 682d5eb..dc2d29e 100644
    clangTidyMiscModule
    clangTidyModernizeModule
 diff --git a/clang-tidy/tool/ClangTidyMain.cpp b/clang-tidy/tool/ClangTidyMain.cpp
-index ab9d935..3de43b5 100644
+index b6684d02..05bd9144 100644
 --- a/clang-tidy/tool/ClangTidyMain.cpp
 +++ b/clang-tidy/tool/ClangTidyMain.cpp
-@@ -470,6 +470,10 @@ extern volatile int ReadabilityModuleAnchorSource;
- static int LLVM_ATTRIBUTE_UNUSED ReadabilityModuleAnchorDestination =
-     ReadabilityModuleAnchorSource;
+@@ -493,6 +493,10 @@ extern volatile int SafetyModuleAnchorSource;
+ static int LLVM_ATTRIBUTE_UNUSED SafetyModuleAnchorDestination =
+     SafetyModuleAnchorSource;
  
 +// This anchor is used to force the linker to link the MISRAModule.
 +extern volatile int MISRAModuleAnchorSource;
