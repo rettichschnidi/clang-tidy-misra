@@ -30,7 +30,7 @@ deviations, sign-offs, etc.) to achieve MISRA compliance
 
 Installation
 ============
-Sorry, no documentation so far. `.travis.yml` may be useful.
+No documentation so far. `.travis.yml` and `travis/build.sh` may be useful.
 
 Bugs
 ====
