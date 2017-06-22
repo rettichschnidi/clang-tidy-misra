@@ -1,3 +1,4 @@
+// Developed and copyright by: bansan85 <legarrec.vincent@gmail.com>
 // RUN: %python %S/../check_clang_tidy.py %s misra-cpp2008-6-4-4 %t
 void compliant(int a) {
   switch (a) {
