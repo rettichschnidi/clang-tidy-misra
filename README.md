@@ -1,4 +1,5 @@
 About [![Build Status](https://travis-ci.org/rettichschnidi/clang-tidy-misra.svg?branch=master)](https://travis-ci.org/rettichschnidi/clang-tidy-misra)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frettichschnidi%2Fclang-tidy-misra.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Frettichschnidi%2Fclang-tidy-misra?ref=badge_shield)
 =====
 
 clang-tidy-misra is a collection of MISRA compliance checkers for clang-tidy.
@@ -72,3 +73,7 @@ Running Tests
 Usage
 =====
 Enable the rules `misra-*` when using [clang-tidy](http://clang.llvm.org/extra/clang-tidy.html).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Frettichschnidi%2Fclang-tidy-misra.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Frettichschnidi%2Fclang-tidy-misra?ref=badge_large)
