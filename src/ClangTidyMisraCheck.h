@@ -79,7 +79,6 @@ protected:
 
 private:
   const std::string CheckName;
-  ClangTidyContext *Context;
   CompilerInstance *CI;
   const bool IgnoreInvalidLocations;
   const bool IgnoreBuiltInLocations;

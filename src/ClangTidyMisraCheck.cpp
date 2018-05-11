@@ -6,10 +6,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "ClangTidyMisraCheck.h"
+#include "RuleHeadlineTexts.h"
 #include "clang/Frontend/CompilerInstance.h"
 #include "clang/Lex/Lexer.h"
 #include "llvm/Support/Debug.h"
-#include "RuleHeadlineTexts.h"
 
 namespace clang {
 namespace tidy {
@@ -17,8 +17,7 @@ namespace misra {
 
 ClangTidyMisraCheck::ClangTidyMisraCheck(llvm::StringRef CheckName,
                                          ClangTidyContext *Context)
-    : ClangTidyCheck(CheckName, Context), CheckName(CheckName),
-      Context(Context), CI(nullptr),
+    : ClangTidyCheck(CheckName, Context), CheckName(CheckName), CI(nullptr),
       IgnoreInvalidLocations(Options.get("IgnoreInvalidLocations", true)),
       IgnoreBuiltInLocations(Options.get("IgnoreBuiltInLocations", true)),
       IgnoreCommandLineLocations(
