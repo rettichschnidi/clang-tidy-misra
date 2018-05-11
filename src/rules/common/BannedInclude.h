@@ -24,12 +24,11 @@ public:
       : PPCallbacks(), RuleChecker(RuleChecker),
         SetOfBannedIncludes(SetOfBannedIncludes) {}
 
-  virtual void
-  InclusionDirective(SourceLocation HashLoc, const Token &IncludeTok,
-                     llvm::StringRef FileName, bool IsAngled,
-                     CharSourceRange FilenameRange, const FileEntry *File,
-                     llvm::StringRef SearchPath, llvm::StringRef RelativePath,
-                     const Module *Imported) override {
+  virtual void InclusionDirective(
+      SourceLocation HashLoc, const Token &IncludeTok, llvm::StringRef FileName,
+      bool IsAngled, CharSourceRange FilenameRange, const FileEntry *File,
+      llvm::StringRef SearchPath, llvm::StringRef RelativePath,
+      const Module *Imported, SrcMgr::CharacteristicKind FileType) override {
     if (SetOfBannedIncludes.count(FileName) > 0) {
       RuleChecker.diag(HashLoc);
     }
