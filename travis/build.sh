@@ -20,4 +20,4 @@ mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=X86 \
  -DBUILD_SHARED_LIBS=ON -DLLVM_CCACHE_BUILD=ON ../llvm
-make VERBOSE=1 -j3 llvm-cxxdump
+make VERBOSE=1 -j3 check-tidy-misra
