@@ -11,3 +11,9 @@ jobs:
       - run:
           name: Checkout and build/run check-tidy-misra
           command: buildagent/build.sh
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_gcc_latest
