@@ -2,12 +2,20 @@
 
 set -e #Exit on first error
 
+if [ -n ${TRAVIS_BRANCH} ]; then
+  git_branch=${TRAVIS_BRANCH}
+elif [ -n ${CIRCLE_BRANCH} ]; then
+  git_branch=${CIRCLE_BRANCH}
+else
+  echo 'Branch not specified!' >&2
+fi
+
 #Check out the source code
 git clone https://github.com/llvm-mirror/llvm.git --depth 1
 git clone https://github.com/llvm-mirror/clang.git --depth 1 llvm/tools/clang
 git clone https://github.com/llvm-mirror/clang-tools-extra.git --depth 1 \
  llvm/tools/clang/tools/extra
-git clone --branch=${TRAVIS_BRANCH} \
+git clone --branch=${git_branch} \
  https://github.com/rettichschnidi/clang-tidy-misra.git --depth 1 \
  llvm/tools/clang/tools/extra/clang-tidy/misra/
 
