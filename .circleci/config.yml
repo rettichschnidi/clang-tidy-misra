@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: apt-get update && apt-get install -y cmake
+          command: apt-get update && apt-get install -y cmake ccache
       - run:
           name: Checkout and build/run check-tidy-misra
           command: buildagent/build.sh
