@@ -10,11 +10,13 @@ else
   echo 'Branch not specified!' >&2
 fi
 
+
 #Check out the source code
 git clone https://github.com/llvm-mirror/llvm.git --depth 1
 git clone https://github.com/llvm-mirror/clang.git --depth 1 llvm/tools/clang
 git clone https://github.com/llvm-mirror/clang-tools-extra.git --depth 1 \
  llvm/tools/clang/tools/extra
+echo "Checking out branch ${git_branch} of clang-tidy-misra"
 git clone --branch=${git_branch} \
  https://github.com/rettichschnidi/clang-tidy-misra.git --depth 1 \
  llvm/tools/clang/tools/extra/clang-tidy/misra/
