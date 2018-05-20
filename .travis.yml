@@ -30,4 +30,4 @@ install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
   - if [ "$CXX" = "clang++" ]; then export CXX="clang++-6.0" CC="clang-6.0"; fi
 script:
-  - travis/build.sh
+  - buildagent/build.sh
