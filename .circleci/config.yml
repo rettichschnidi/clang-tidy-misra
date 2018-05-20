@@ -2,12 +2,12 @@ version: 2
 jobs:
   build_gcc_latest:
     docker:
-      - image: gcc:7
+      - image: gcc:latest
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: apt-get update && apt-get install -y cmake ccache
+          command: apt-get update && apt-get install -y cmake
       - run:
           name: Checkout and build/run check-tidy-misra
           command: buildagent/build.sh
