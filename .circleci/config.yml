@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_gcc_latest:
     docker:
-      - image: gcc:latest
+      - image: gcc:6
     steps:
       - checkout
       - run:
