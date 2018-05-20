@@ -2,9 +2,9 @@
 
 set -e #Exit on first error
 
-if [ -n ${TRAVIS_BRANCH} ]; then
+if [ ${TRAVIS_BRANCH} ]; then
   git_branch=${TRAVIS_BRANCH}
-elif [ -n ${CIRCLE_BRANCH} ]; then
+elif [ ${CIRCLE_BRANCH} ]; then
   git_branch=${CIRCLE_BRANCH}
 else
   echo 'Branch not specified!' >&2
