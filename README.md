@@ -30,7 +30,7 @@ deviations, sign-offs, etc.) to achieve MISRA compliance
 
 Installation
 ============
-No documentation so far. `.travis.yml` and `travis/build.sh` may be useful.
+No documentation so far. `.circleci/config.yml` and `buildagent/build.sh` may be useful.
 
 Bugs
 ====
