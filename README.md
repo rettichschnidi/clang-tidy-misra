@@ -1,4 +1,4 @@
-About [![Build Status](https://travis-ci.org/rettichschnidi/clang-tidy-misra.svg?branch=master)](https://travis-ci.org/rettichschnidi/clang-tidy-misra)
+About [![Build Status](https://circleci.com/gh/rettichschnidi/clang-tidy-misra/tree/master.svg?style=svg)](https://circleci.com/gh/rettichschnidi/clang-tidy-misra)
 =====
 
 clang-tidy-misra is a collection of MISRA compliance checkers for clang-tidy.
