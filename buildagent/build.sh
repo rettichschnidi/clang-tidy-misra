@@ -8,6 +8,7 @@ elif [ ${CIRCLE_BRANCH} ]; then
   git_branch=${CIRCLE_BRANCH}
 else
   echo 'Branch not specified!' >&2
+  exit -1
 fi
 
 #Check out the source code
